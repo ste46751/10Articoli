@@ -35,10 +35,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_fed = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pnl_fedelta = new System.Windows.Forms.Panel();
+            this.checkFedNo = new System.Windows.Forms.CheckBox();
+            this.checkFedSi = new System.Windows.Forms.CheckBox();
             this.pnl_alim = new System.Windows.Forms.Panel();
             this.bttn_salvaalim = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -47,6 +48,9 @@
             this.bttn_nonalim = new System.Windows.Forms.Button();
             this.bttn_fresco = new System.Windows.Forms.Button();
             this.pnl_nonalim = new System.Windows.Forms.Panel();
+            this.checkNo = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkSi = new System.Windows.Forms.CheckBox();
             this.bttn_salvaNoNalim = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txt_mater = new System.Windows.Forms.TextBox();
@@ -66,13 +70,14 @@
             this.txt_prez2 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.checkSi = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkNo = new System.Windows.Forms.CheckBox();
+            this.lstbx_scontrino = new System.Windows.Forms.ListBox();
+            this.bttn_scontrino = new System.Windows.Forms.Button();
+            this.pnl_scontrino = new System.Windows.Forms.Panel();
             this.pnl_fedelta.SuspendLayout();
             this.pnl_alim.SuspendLayout();
             this.pnl_nonalim.SuspendLayout();
             this.pnl_fresco.SuspendLayout();
+            this.pnl_scontrino.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_cod1
@@ -133,13 +138,6 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Prezzo:";
             // 
-            // txt_fed
-            // 
-            this.txt_fed.Location = new System.Drawing.Point(93, 24);
-            this.txt_fed.Name = "txt_fed";
-            this.txt_fed.Size = new System.Drawing.Size(88, 20);
-            this.txt_fed.TabIndex = 8;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -160,13 +158,34 @@
             // 
             // pnl_fedelta
             // 
+            this.pnl_fedelta.Controls.Add(this.checkFedNo);
             this.pnl_fedelta.Controls.Add(this.btn_invia);
-            this.pnl_fedelta.Controls.Add(this.txt_fed);
+            this.pnl_fedelta.Controls.Add(this.checkFedSi);
             this.pnl_fedelta.Controls.Add(this.label4);
             this.pnl_fedelta.Location = new System.Drawing.Point(304, 98);
             this.pnl_fedelta.Name = "pnl_fedelta";
             this.pnl_fedelta.Size = new System.Drawing.Size(200, 100);
             this.pnl_fedelta.TabIndex = 11;
+            // 
+            // checkFedNo
+            // 
+            this.checkFedNo.AutoSize = true;
+            this.checkFedNo.Location = new System.Drawing.Point(116, 27);
+            this.checkFedNo.Name = "checkFedNo";
+            this.checkFedNo.Size = new System.Drawing.Size(38, 17);
+            this.checkFedNo.TabIndex = 22;
+            this.checkFedNo.Text = "no";
+            this.checkFedNo.UseVisualStyleBackColor = true;
+            // 
+            // checkFedSi
+            // 
+            this.checkFedSi.AutoSize = true;
+            this.checkFedSi.Location = new System.Drawing.Point(77, 27);
+            this.checkFedSi.Name = "checkFedSi";
+            this.checkFedSi.Size = new System.Drawing.Size(33, 17);
+            this.checkFedSi.TabIndex = 21;
+            this.checkFedSi.Text = "sì";
+            this.checkFedSi.UseVisualStyleBackColor = true;
             // 
             // pnl_alim
             // 
@@ -179,7 +198,7 @@
             this.pnl_alim.Controls.Add(this.txt_prezzo1);
             this.pnl_alim.Controls.Add(this.label1);
             this.pnl_alim.Controls.Add(this.label2);
-            this.pnl_alim.Location = new System.Drawing.Point(42, 98);
+            this.pnl_alim.Location = new System.Drawing.Point(41, 98);
             this.pnl_alim.Name = "pnl_alim";
             this.pnl_alim.Size = new System.Drawing.Size(219, 198);
             this.pnl_alim.TabIndex = 12;
@@ -258,6 +277,35 @@
             this.pnl_nonalim.Name = "pnl_nonalim";
             this.pnl_nonalim.Size = new System.Drawing.Size(219, 218);
             this.pnl_nonalim.TabIndex = 13;
+            // 
+            // checkNo
+            // 
+            this.checkNo.AutoSize = true;
+            this.checkNo.Location = new System.Drawing.Point(150, 146);
+            this.checkNo.Name = "checkNo";
+            this.checkNo.Size = new System.Drawing.Size(38, 17);
+            this.checkNo.TabIndex = 20;
+            this.checkNo.Text = "no";
+            this.checkNo.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(40, 144);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Riciclabile:";
+            // 
+            // checkSi
+            // 
+            this.checkSi.AutoSize = true;
+            this.checkSi.Location = new System.Drawing.Point(111, 146);
+            this.checkSi.Name = "checkSi";
+            this.checkSi.Size = new System.Drawing.Size(33, 17);
+            this.checkSi.TabIndex = 18;
+            this.checkSi.Text = "sì";
+            this.checkSi.UseVisualStyleBackColor = true;
             // 
             // bttn_salvaNoNalim
             // 
@@ -423,40 +471,39 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "Descrizione:";
             // 
-            // checkSi
+            // lstbx_scontrino
             // 
-            this.checkSi.AutoSize = true;
-            this.checkSi.Location = new System.Drawing.Point(111, 144);
-            this.checkSi.Name = "checkSi";
-            this.checkSi.Size = new System.Drawing.Size(33, 17);
-            this.checkSi.TabIndex = 18;
-            this.checkSi.Text = "sì";
-            this.checkSi.UseVisualStyleBackColor = true;
+            this.lstbx_scontrino.FormattingEnabled = true;
+            this.lstbx_scontrino.Location = new System.Drawing.Point(19, 81);
+            this.lstbx_scontrino.Name = "lstbx_scontrino";
+            this.lstbx_scontrino.Size = new System.Drawing.Size(455, 121);
+            this.lstbx_scontrino.TabIndex = 16;
             // 
-            // label6
+            // bttn_scontrino
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 144);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 13);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Riciclabile:";
+            this.bttn_scontrino.Location = new System.Drawing.Point(41, 23);
+            this.bttn_scontrino.Name = "bttn_scontrino";
+            this.bttn_scontrino.Size = new System.Drawing.Size(111, 44);
+            this.bttn_scontrino.TabIndex = 16;
+            this.bttn_scontrino.Text = "Stampa lo scontrino";
+            this.bttn_scontrino.UseVisualStyleBackColor = true;
+            this.bttn_scontrino.Click += new System.EventHandler(this.bttn_scontrino_Click);
             // 
-            // checkNo
+            // pnl_scontrino
             // 
-            this.checkNo.AutoSize = true;
-            this.checkNo.Location = new System.Drawing.Point(150, 146);
-            this.checkNo.Name = "checkNo";
-            this.checkNo.Size = new System.Drawing.Size(38, 17);
-            this.checkNo.TabIndex = 20;
-            this.checkNo.Text = "no";
-            this.checkNo.UseVisualStyleBackColor = true;
+            this.pnl_scontrino.Controls.Add(this.lstbx_scontrino);
+            this.pnl_scontrino.Controls.Add(this.bttn_scontrino);
+            this.pnl_scontrino.Location = new System.Drawing.Point(531, 286);
+            this.pnl_scontrino.Name = "pnl_scontrino";
+            this.pnl_scontrino.Size = new System.Drawing.Size(488, 214);
+            this.pnl_scontrino.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1174, 613);
+            this.Controls.Add(this.pnl_scontrino);
             this.Controls.Add(this.pnl_fresco);
             this.Controls.Add(this.pnl_nonalim);
             this.Controls.Add(this.bttn_fresco);
@@ -475,6 +522,7 @@
             this.pnl_nonalim.PerformLayout();
             this.pnl_fresco.ResumeLayout(false);
             this.pnl_fresco.PerformLayout();
+            this.pnl_scontrino.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,7 +537,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_fed;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnl_fedelta;
@@ -523,6 +570,11 @@
         private System.Windows.Forms.CheckBox checkNo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkSi;
+        private System.Windows.Forms.ListBox lstbx_scontrino;
+        private System.Windows.Forms.Button bttn_scontrino;
+        private System.Windows.Forms.Panel pnl_scontrino;
+        private System.Windows.Forms.CheckBox checkFedNo;
+        private System.Windows.Forms.CheckBox checkFedSi;
     }
 }
 

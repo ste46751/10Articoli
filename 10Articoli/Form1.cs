@@ -16,42 +16,23 @@ namespace _10Articoli
         {
             InitializeComponent();
 
-            bttn_alim.Visible = false;
-            bttn_fresco.Visible = false;
-            bttn_nonalim.Visible = false;  
+
+            pnl_scontrino.Visible = true;
+            bttn_alim.Visible = true;
+            bttn_fresco.Visible = true;
+            bttn_nonalim.Visible = true;  
             pnl_alim.Visible = false;
             pnl_fresco.Visible = false;
             pnl_nonalim.Visible=false;
+            pnl_fedelta.Visible = false;
+
         }
         List<ArticoliAlimentare> aliment = new List<ArticoliAlimentare>();
         List<ArticoliFresco> freschi = new List<ArticoliFresco>();
         List<ArticoliNonAlimentare> nonAliment = new List<ArticoliNonAlimentare>();
+        
 
-        private void btn_invia_Click(object sender, EventArgs e)
-        {
-            Articoli articoli = new Articoli();
-            string fed = txt_fed.Text;
-            if (fed == "si")
-            {
-                articoli.fedelta = true;
-            }
-            else
-            {
-                articoli.fedelta = false;
-            }
-            pnl_fedelta.Visible=false;
-
-            bttn_alim.Visible = true;
-            bttn_fresco.Visible = true;
-            bttn_nonalim.Visible = true;
-
-            /*
-            articoli.Codice=txt_cod.Text;
-            articoli.Descrizione = txt_descr.Text;
-            articoli.Prezzo = float.Parse(txt_prezzo.Text);
-            
-            */
-        }
+        
 
         private void bttn_alim_Click(object sender, EventArgs e)
         {
@@ -60,6 +41,8 @@ namespace _10Articoli
             bttn_fresco.Visible=false;
             bttn_nonalim.Visible = false;
             bttn_alim.Visible = false;
+
+            pnl_scontrino.Visible = false;
         }
 
         private void bttn_fresco_Click(object sender, EventArgs e)
@@ -69,6 +52,8 @@ namespace _10Articoli
             bttn_fresco.Visible = false;
             bttn_nonalim.Visible = false;
             bttn_alim.Visible = false;
+
+            pnl_scontrino.Visible = false;
         }
 
         private void bttn_nonalim_Click(object sender, EventArgs e)
@@ -78,6 +63,8 @@ namespace _10Articoli
             bttn_fresco.Visible = false;
             bttn_nonalim.Visible = false;
             bttn_alim.Visible = false;
+
+            pnl_scontrino.Visible = false;
         }
 
         private void bttn_salvaalim_Click(object sender, EventArgs e)
@@ -92,13 +79,15 @@ namespace _10Articoli
 
             aliment.Add(articoliAlimentare);
 
-
+            
             pnl_nonalim.Visible = false;
             pnl_alim.Visible = false;
             pnl_fresco.Visible = false;
             bttn_fresco.Visible = true;
             bttn_nonalim.Visible = true;
             bttn_alim.Visible = true;
+
+            pnl_scontrino.Visible = true;
 
         }
 
@@ -108,18 +97,22 @@ namespace _10Articoli
             articolifresco.Codice = txt_cod2.Text;
             articolifresco.Descrizione = txt_descr2.Text;
             articolifresco.Prezzo = int.Parse(txt_prez2.Text);
-            articolifresco.Giorni = int.Parse(txt_scad.Text);
+            articolifresco.Giorni = int.Parse(txt_giorni.Text);
 
             articolifresco.sconto();
 
             freschi.Add(articolifresco);
 
+            
             pnl_nonalim.Visible = false;
             pnl_alim.Visible = false;
             pnl_fresco.Visible = false;
             bttn_fresco.Visible = true;
             bttn_nonalim.Visible = true;
             bttn_alim.Visible = true;
+
+            pnl_scontrino.Visible = true;
+
         }
 
         private void bttn_salvaNoNalim_Click(object sender, EventArgs e)
@@ -150,14 +143,73 @@ namespace _10Articoli
             bttn_fresco.Visible = true;
             bttn_nonalim.Visible = true;
             bttn_alim.Visible = true;
+
+            pnl_scontrino.Visible = true;
+
+
         }
-    } 
+
+
+
+        private void bttn_scontrino_Click(object sender, EventArgs e)
+        {
+            pnl_fedelta.Visible = true;
+        }
+
+        private void btn_invia_Click(object sender, EventArgs e)
+        {
+            Articoli ali = new Articoli(); 
+            ArticoliNonAlimentare nnalim = new ArticoliNonAlimentare();
+            if (checkFedSi.Checked.Equals(true) && checkFedNo.Checked.Equals(false))
+            {
+                ali.fedelta = true;
+            }
+            else if (checkSi.Checked.Equals(false) && checkNo.Checked.Equals(true))
+            {
+                ali.fedelta = false;
+            }
+            else
+            {
+                ali.fedelta = false;
+            }
+
+            
+
+            foreach (ArticoliAlimentare alim in aliment)
+            {
+                ali.sconto();
+                lstbx_scontrino.Items.Add(alim.stampa());
+                
+                ali.totale += alim.Prezzo;
+                
+            }
+            foreach(ArticoliNonAlimentare nonAl in nonAliment)
+            {
+                lstbx_scontrino.Items.Add(nonAl.stampa());
+                ali.totale += nonAl.Prezzo;
+            }
+            foreach (ArticoliFresco fresc in freschi)
+            {
+                lstbx_scontrino.Items.Add(fresc.stampa());
+                ali.totale += fresc.Prezzo;
+            }
+            lstbx_scontrino.Items.Add("totale:"+ali.totale);
+
+            pnl_fedelta.Visible = false;
+            bttn_alim.Visible = false;
+            bttn_nonalim.Visible = false;   
+            bttn_fresco.Visible = false;
+            bttn_scontrino.Enabled = false;
+        }
+    }
     class Articoli
     {
         public string _codice;
         public string _descrizione;
         public float _prezzo;
+        public float totale=0;
         public bool fedelta=false;
+
         public string Codice
         {
             get { return _codice; }
@@ -178,7 +230,7 @@ namespace _10Articoli
         {
             if(fedelta==true)
             {
-                Prezzo = Prezzo / 100 * 5;
+                totale = totale / 100 * 5;
             }
             else
             {
@@ -193,9 +245,14 @@ namespace _10Articoli
         public int Anno
         {
             get { return _anno; }
-            
+
             set { _anno = value; }
         }
+        public ArticoliAlimentare()
+        {
+
+        }
+
         public override void sconto()
         {
             if (Anno == DateTime.Today.Year)
@@ -206,6 +263,12 @@ namespace _10Articoli
             {
             }
         }
+        public virtual string stampa()
+        {
+            return $"Nome:{Descrizione} Codice:{Codice} Scadenza:{Anno} Prezzo:{Prezzo}";
+        }
+
+       
     }
     class ArticoliNonAlimentare : Articoli
     {
@@ -229,8 +292,12 @@ namespace _10Articoli
             }
             else
             {
-
+                
             }
+        }
+        public string stampa()
+        {
+            return $"Nome:{Descrizione} Codice:{Codice} Materiale:{Materiale} Prezzo:{Prezzo}";
         }
     }
     class ArticoliFresco : ArticoliAlimentare
@@ -249,6 +316,10 @@ namespace _10Articoli
                 sco = 10 - 2 * i;
             }
             Prezzo -= Prezzo / 100 * sco;
+        }
+        public override string stampa()
+        {
+            return $"Nome:{Descrizione} Codice:{Codice} Giorni:{Giorni} Prezzo:{Prezzo}";
         }
     }
 }
